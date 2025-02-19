@@ -76,6 +76,23 @@ const styles = StyleSheet.create({
     buttonText: {
         
     },
+
+    errorMessage:{
+
+        fontSize: 12,
+        color: "red",
+        fontWeight: "bold",
+        paddingLeft: 20,
+        
+
+
+    },
+
+
+
+
+
+
 });
 
 export default styles;
