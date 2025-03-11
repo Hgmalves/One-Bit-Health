@@ -5,7 +5,9 @@ import { View,
     TouchableOpacity, 
     Keyboard, 
     TouchableWithoutFeedback, 
-    Vibration
+    Vibration,
+    Pressable,
+
 
 } from "react-native";
 
@@ -48,6 +50,9 @@ export default function Form() {
 
 
   function validationImc() {
+    
+    Keyboard.dismiss(); // Fecha o teclado ao pressionar o botão
+    
     if (weight != null && height != null) {
       imcCalculator();
       setHeight(null);
@@ -63,42 +68,39 @@ export default function Form() {
     setMessageImc("Preencha o peso e altura");
     
 }
+return (
+  <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>
+      <Pressable onPress={Keyboard.dismiss} style={styles.form}>
+        <Text style={styles.formLabel}>Altura</Text>
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setHeight(text.replace(",", "."))}
+          value={height}
+          placeholder="Ex. 1.75"
+          keyboardType="numeric"
+        />
 
-  return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.formContext}>
-        <View style={styles.form}>
-          <Text style={styles.formLabel}>Altura</Text>
-          <Text style={styles.errorMessage} > {errorMessage}</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => setHeight(text.replace(",", "."))}
-            value={height}
-            placeholder="Ex. 1.75"
-            keyboardType="numeric"
-          />
+        <Text style={styles.formLabel}>Peso</Text>
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setWeight(text.replace(",", "."))}
+          value={weight}
+          placeholder="Ex. 75.365"
+          keyboardType="numeric"
+        />
 
-            
+        <TouchableOpacity style={styles.buttonCalculator} onPress={validationImc}>
+          <Text style={styles.textButtonCalculator}>{buttonText}</Text>
+        </TouchableOpacity>
+      </Pressable>
+
+      <ResultImc messageResultImc={messageImc} ResultImc={imc} />
+    </Pressable>
+  </TouchableWithoutFeedback>
+);
+};
 
 
-
-          <Text style={styles.formLabel}>Peso</Text>
-          <Text style={styles.errorMessage} > {errorMessage}</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => setWeight(text.replace(",", "."))}
-            value={weight}
-            placeholder="Ex. 75.365"
-            keyboardType="numeric"
-          />
-
-          <TouchableOpacity style={styles.buttonCalculator} onPress={validationImc}>
-            <Text style={styles.textButtonCalculator}>{buttonText}</Text>
-          </TouchableOpacity>
-        </View>
-
-        <ResultImc messageResultImc={messageImc} ResultImc={imc} />
-      </View>
-    </TouchableWithoutFeedback>
-  );
-}

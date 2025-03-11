@@ -4,15 +4,15 @@ import Form from '.';
 
 const styles = StyleSheet.create({
     formContext: {
-        
-        width: "100%",
-        height: "100%",
-        bottom: 0,
+       flex: 1,
         backgroundColor: "#ffffff",
+        marginTop: 30,
         alignItems: "center",
         borderTopLeftRadius:30,
         borderTopRightRadius:30,
-        marginTop:30,
+        paddingTop:30,
+        marginTop: 30,
+        padding: 10,
 
         
         
@@ -22,8 +22,7 @@ const styles = StyleSheet.create({
 
             width: "100%",
             height: "auto",
-            marginTop: 30,
-            padding: 10,
+            paddingTop: 20,
 
         },
     
